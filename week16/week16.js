@@ -237,13 +237,14 @@ function checkButton(e) {
 
 	const paragraphThirteen = document.getElementById('practicum13');
 	const formFour = document.forms[3];
-	const radioButton = formFour.elements[1];
+	const radioButton = formFour.elements['0'];
 
-	if (radioButton) {
-		const selected = radioButton.checked;
-		paragraphThirteen.textContent =`Кнопка выбрана`;
+	if (radioButton.checked) {
+		
+		paragraphThirteen.textContent = `Кнопка выбрана`;
 	}else{
-		paragraphThirteen.textContent =`Кнопка не выбрана`;
+	
+		paragraphThirteen.textContent = `Кнопка не выбрана`;
 	}
 }//Ваш код
 
@@ -435,6 +436,14 @@ document.forms.formTwo.addEventListener('submit', function (evt) {
 	const checkbox1 = document.getElementById('checkbox1').checked;
 	const checkbox2 = document.getElementById('checkbox2').checked;
 	const checkbox3 = document.getElementById('checkbox3').checked;
+	const errorMessage = document.getElementById('result21')
+
+	if (!checkbox1 && !checkbox2 && !checkbox3) {
+        evt.preventDefault();
+        errorMessage.textContent = 'Выберите хотя бы один чекбокс';
+	}else {
+        errorMessage.textContent = '';
+    }
 	//Ваш код
 });
 
@@ -443,19 +452,40 @@ document.forms.formTwo.addEventListener('submit', function (evt) {
 
 document.querySelector('.b-22').onclick = function (event) {
 	const nameInput = document.forms.formThree.elements.thirdName;
+	const errorMessage = document.getElementById('result22');
+	if(nameInput.value === '' ){
+		event.preventDefault();
+		errorMessage.textContent = 'Введите ваше имя';
+	} else {
+        errorMessage.textContent = '';
+    }
 	//Ваш код
 };
 
 //Задание 23
 //При выборе опции "Я хочу зарегистрироваться" в четвёртой форме кнопка должна быть разблокирована. В противном случае, сделайте кнопку отправки формы заблокированной.
 //Подсказка: используйте свойство disabled
+const formFour = document.forms[3];
+const radioButton = formFour.elements;
+
+if (radioButton.checked === true) {
+    radioButton.disabled != true;
+} else {
+    radioButton.disabled = true;
+}
+
+
 
 //Задание 24
 //Найдите все поля ввода на странице (querySelectorAll) и установите им атрибут "placeholder" со значением "Введите данные" (используйте метод forEach).
 
 document.querySelector('.b-24').addEventListener('click', function () {
-	//Ваш код
+	const inputFields = document.querySelectorAll('input');
+	inputFields.forEach(function (input) {
+	input.placeholder = 'Введите данные';
+	});
 });
+
 
 //Задание 25
 //При фокусе на любом поле ввода измените его границу на цвет "#00ff00". При потере фокуса восстановите стандартную границу.
@@ -464,34 +494,50 @@ document.querySelector('.b-25').addEventListener('click', function () {
 	const inputs = document.querySelectorAll('input');
 
 	inputs.forEach(function (input) {
-		//Ваш код
+	input.addEventListener('focus', function () {
+		input.style.border = '2px solid #00ff00';
+});
+
+	input.addEventListener('blur', function () {
+		input.style.border = ''; // Восстановление стандартной границы
+});
 	});
 });
+
 
 //Задание 26
 //При нажатии на кнопку "Задание 26" отобразите в элементе с id "result26" значение placeholder из поля имя в третьей форме
 
 document.querySelector('.b-26').addEventListener('click', function (event) {
 	event.preventDefault();
-	//Ваш код
+	
+	const result26 = document.getElementById('result26');
+	const inputName = document.forms[2].elements['thirdName'];
+
+	result26.textContent = `Значение placeholder: ${inputName.placeholder}`;
 });
+
 
 //Задание 27
 //При изменении значения любого из полей второй формы отобразите сообщение с текстом "Изменение внесено" в элементе с id "result27"
 
-const formTwoInputs = document.querySelectorAll('.secondForm input');
+document.querySelector('.b-27').addEventListener('click', function () {
+	const result27 = document.getElementById('result27');
 
-formTwoInputs.forEach(function (input) {
-	input.addEventListener('input', function () {
-		//Ваш код
+	formTwoInputs.forEach(function (input) {
+		input.addEventListener('input', function () {
+			result27.textContent = 'Изменение внесено';
+		});
 	});
 });
 
 //Задание 28
 //При выборе любой из опций выпадающего списка в третьей форме отобразите сообщение с текстом "Опция выбрана" в элементе с id "result28"
 
-const selectFormThree = document.getElementById('firstSelect');
-
-selectFormThree.addEventListener('change', function () {
-	//Ваш код
+const result28 = document.getElementById('result28');
+const firstForm = document.forms[0];
+firstForm.addEventListener('select', function () {
+    result28.textContent = 'Опция выбрана';
 });
+
+//ошибка в задании??? Выпадающий список есть в первой форме. 
