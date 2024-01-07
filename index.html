@@ -13,12 +13,13 @@
     <body>
     <div class="container">
         <form id="formId">
-            <input type="text" name="name" placeholder="Имя" minlength="2" maxlength="20" required/>
+            <input type="text" name="name" placeholder="Имя" minlength="2" maxlength="20" required />*
             <p id="nameError" class="error-message"></p>
-            <input type="email" name="email" placeholder="Электронная почта"  required/>
+            <input type="email" name="email" placeholder="Электронная почта"  required/>*
             <p id="emailError" class="error-message"></p>
-            <input type="age" name="age" placeholder="Возраст" required/>
-            <label id="male">
+            <input type="age" name="age" placeholder="Возраст" required />*
+            <p>
+                <label id="male">
                 <input type="radio" name="sex" value="male" required />
                 Мужчина
             </label>
@@ -27,7 +28,8 @@
                 Женщина
             </label>
             
-            <select name="profession" required>
+            <p>
+            <select name="profession" required>*
                 <option value="" disabled selected hidden>Выберите профессию</option>
                 <option value="Врач">Врач</option>
                 <option value="Программист">Программист</option>
@@ -37,19 +39,18 @@
                 <option value="Продавец">Продавец</option>
                 <option value="Другое">Другое</option>
             </select>
-            
-            <input type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()]{8,}$" placeholder="Пароль" required/>
+            <p></p>
+            <input type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()]{8,}$" placeholder="Пароль" required/>*
             <p id="passwordError" class="error-message"></p>
             <label id="personalInformationConfirmation">
-                <input type="checkbox" id="checkboxInformation" required />
+                <input type="checkbox" id="checkboxInformation" required />*
                 Согласие с обработкой данных
             </label>
-       
+        <p>
             <button type="submit" onclick="validateForm()" >Отправить</button>
+        </p>
         </form>
-
     </div>
-    
     <script src="./assets/index.js"></script>
 	</body>
 </html>
