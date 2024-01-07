@@ -466,10 +466,11 @@ document.querySelector('.b-22').onclick = function (event) {
 //При выборе опции "Я хочу зарегистрироваться" в четвёртой форме кнопка должна быть разблокирована. В противном случае, сделайте кнопку отправки формы заблокированной.
 //Подсказка: используйте свойство disabled
 const formFour = document.forms[3];
-const radioButton = formFour.elements;
+const radioButton = formFour.elements[fourthButton];
+
 
 if (radioButton.checked === true) {
-    radioButton.disabled != true;
+	radioButton.disabled = false;
 } else {
     radioButton.disabled = true;
 }
@@ -536,7 +537,7 @@ document.querySelector('.b-27').addEventListener('click', function () {
 
 const result28 = document.getElementById('result28');
 const firstForm = document.forms[0];
-firstForm.addEventListener('select', function () {
+firstForm.addEventListener('change', function () {
     result28.textContent = 'Опция выбрана';
 });
 

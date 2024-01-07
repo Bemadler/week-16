@@ -17,19 +17,21 @@ function validateForm(event) {
 
     // Код валидации name
     if (nameInput.value.length < 2) {
-        nameError.textContent = 'Имя должно содержать не менее 2 символов';
+        nameError.textContent = 'Имя должно содержать не менее 2 символов';        
     } else {
         nameError.textContent = '';
     }
-
+    
     // Код валидации email
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (regex.test(emailInput.value)) {
-        console.log('Email валиден');
-    } else {
-        console.log('Невалидный Email');
-    }
-
+const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+if (!regex.test(emailInput.value)) {
+    emailError.textContent = 'Введите корректный email.';
+    emailError.style.display = 'block';
+    hasError = true;
+} else {
+    console.log('Невалидный Email');
+    emailError.textContent = '';
+}
     //Kод 
     nameError.style.display = 'none';
     emailError.style.display = 'none';
@@ -49,7 +51,6 @@ function validateForm(event) {
     if (!hasError) {
         alert('Форма успешно отправлена!');
     }
-}
 // Код вывода в консоль и очистки формы
 if (!hasError) {
     console.log('Имя:', nameInput.value);
@@ -60,8 +61,6 @@ if (!hasError) {
 
     alert('Форма успешно отправлена!');
 }
-
-
 const inputs = document.querySelectorAll('input');
 
 inputs.forEach(function (input) {
@@ -76,3 +75,11 @@ inputs.forEach(function (input) {
 
 const form = document.getElementById('formId');
 form.addEventListener('submit', validateForm);
+
+}
+
+
+
+
+
+
